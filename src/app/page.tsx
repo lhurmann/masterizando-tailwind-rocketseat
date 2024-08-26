@@ -1,7 +1,10 @@
 import * as Input from '@/components/Input'
 import * as FileInput from '@/components/Form/FileInput'
 import { SettingsTabs } from '@/components/SettingsTabs'
-import { Mail } from 'lucide-react'
+import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
+import { Select } from '@/components/Form/Select'
+import { SelectItem } from '@/components/Form/Select/SelectItem'
+import { Textarea } from '@/components/Form/Textarea'
 
 export default function Home() {
   return (
@@ -110,7 +113,10 @@ export default function Home() {
             >
               Country
             </label>
-            <div></div>
+            <Select placeholder="Select a country...">
+              <SelectItem value="br" text="Brazil" />
+              <SelectItem value="us" text="United States" />
+            </Select>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -120,7 +126,16 @@ export default function Home() {
             >
               Timezone
             </label>
-            <div></div>
+            <Select placeholder="Select a timezone...">
+              <SelectItem
+                value="utc8"
+                text="Pacific Standard Time (PST) | UTC−08:00"
+              />
+              <SelectItem
+                value="utc3"
+                text="America São Paulo (ASP) | (UTC-03:00)"
+              />
+            </Select>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -130,7 +145,61 @@ export default function Home() {
                 Write a short introduction.
               </span>
             </label>
-            <div></div>
+            <div className="space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <Select placeholder="" defaultValue="normal">
+                  <SelectItem
+                    value="normal"
+                    defaultChecked
+                    text="Normal Text"
+                  />
+                  <SelectItem value="md" text="Markdown" />
+                </Select>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    className="rounded-md p-2 hover:bg-zinc-100"
+                  >
+                    <Bold className="h-4 w-4 text-zinc-500" strokeWidth={2} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rounded-md p-2 hover:bg-zinc-100"
+                  >
+                    <Italic className="h-4 w-4 text-zinc-500" strokeWidth={2} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rounded-md p-2 hover:bg-zinc-100"
+                  >
+                    <Link className="h-4 w-4 text-zinc-500" strokeWidth={2} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rounded-md p-2 hover:bg-zinc-100"
+                  >
+                    <List className="h-4 w-4 text-zinc-500" strokeWidth={2} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="rounded-md p-2 hover:bg-zinc-100"
+                  >
+                    <ListOrdered
+                      className="h-4 w-4 text-zinc-500"
+                      strokeWidth={2}
+                    />
+                  </button>
+                </div>
+              </div>
+              <Textarea
+                defaultValue="I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
+                id="bio"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-form gap-3 pt-5">
@@ -143,9 +212,10 @@ export default function Home() {
                 Share a few snippets of your work.
               </span>
             </label>
-            <FileInput.Root className="">
+            <FileInput.Root>
               <FileInput.Trigger />
-              <FileInput.Control />
+              <FileInput.FileList />
+              <FileInput.Control multiple={true} />
             </FileInput.Root>
           </div>
 
