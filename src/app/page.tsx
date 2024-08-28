@@ -5,6 +5,7 @@ import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
 import { Select } from '@/components/Form/Select'
 import { SelectItem } from '@/components/Form/Select/SelectItem'
 import { Textarea } from '@/components/Form/Textarea'
+import Button from '@/components/Button'
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <SettingsTabs />
 
       <div className="mt-6 flex flex-col">
-        <div className="flex items-center justify-between border-b border-zinc-200 pb-5">
+        <div className="flex flex-col justify-between gap-4 border-b border-zinc-200 pb-5 lg:flex-row lg:items-center">
           <div className="space-y-1">
             <h2 className="text-lg font-medium text-zinc-900">Personal Info</h2>
             <span className="text-sm text-zinc-500">
@@ -22,19 +23,12 @@ export default function Home() {
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50"
-            >
+            <Button variant="outline" type="button">
               Cancel
-            </button>
-            <button
-              type="submit"
-              form="settings"
-              className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-700"
-            >
+            </Button>
+            <Button variant="primary" type="submit" form="settings">
               Save
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -42,25 +36,34 @@ export default function Home() {
           id="settings"
           className="mt-6 flex w-full flex-col gap-5 divide-y divide-zinc-200"
         >
-          <div className="grid grid-cols-form gap-3">
+          <div className="flex flex-col gap-3 lg:grid lg:grid-cols-form">
             <label
               htmlFor="firstName"
               className="text-sm font-medium text-zinc-700"
             >
               Name
             </label>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2">
               <Input.InputRoot>
                 <Input.InputControl id="firstName" defaultValue="Lucas" />
               </Input.InputRoot>
 
-              <Input.InputRoot>
-                <Input.InputControl defaultValue="Hurmann" />
-              </Input.InputRoot>
+              <div className="flex flex-col gap-3 lg:block">
+                <label
+                  htmlFor="lastName"
+                  className="text-sm font-medium text-zinc-700 lg:sr-only"
+                >
+                  Last Name
+                </label>
+
+                <Input.InputRoot>
+                  <Input.InputControl defaultValue="Hurmann" />
+                </Input.InputRoot>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label
               htmlFor="email"
               className="text-sm font-medium text-zinc-700"
@@ -79,7 +82,7 @@ export default function Home() {
             </Input.InputRoot>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label
               htmlFor="photo"
               className="text-sm font-medium text-zinc-700"
@@ -90,14 +93,14 @@ export default function Home() {
               </span>
             </label>
 
-            <FileInput.Root className="flex items-start gap-5">
+            <FileInput.Root className="flex flex-col gap-5 lg:flex-row lg:items-start">
               <FileInput.ImagePreview />
               <FileInput.Trigger />
               <FileInput.Control />
             </FileInput.Root>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label htmlFor="role" className="text-sm font-medium text-zinc-700">
               Role
             </label>
@@ -106,7 +109,7 @@ export default function Home() {
             </Input.InputRoot>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label
               htmlFor="country"
               className="text-sm font-medium text-zinc-700"
@@ -119,7 +122,7 @@ export default function Home() {
             </Select>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label
               htmlFor="timezone"
               className="text-sm font-medium text-zinc-700"
@@ -138,7 +141,7 @@ export default function Home() {
             </Select>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label htmlFor="bio" className="text-sm font-medium text-zinc-700">
               Bio
               <span className="mt-0.5 block text-sm font-normal text-zinc-500">
@@ -146,7 +149,7 @@ export default function Home() {
               </span>
             </label>
             <div className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-3 lg:grid lg:grid-cols-2">
                 <Select placeholder="" defaultValue="normal">
                   <SelectItem
                     value="normal"
@@ -155,54 +158,43 @@ export default function Home() {
                   />
                   <SelectItem value="md" text="Markdown" />
                 </Select>
+
                 <div className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    className="rounded-md p-2 hover:bg-zinc-100"
-                  >
-                    <Bold className="h-4 w-4 text-zinc-500" strokeWidth={2} />
-                  </button>
+                  <Button type="button" variant="ghost">
+                    <Bold className="h-4 w-4 text-zinc-500" strokeWidth={2.5} />
+                  </Button>
 
-                  <button
-                    type="button"
-                    className="rounded-md p-2 hover:bg-zinc-100"
-                  >
-                    <Italic className="h-4 w-4 text-zinc-500" strokeWidth={2} />
-                  </button>
+                  <Button type="button" variant="ghost">
+                    <Italic
+                      className="h-4 w-4 text-zinc-500"
+                      strokeWidth={2.5}
+                    />
+                  </Button>
 
-                  <button
-                    type="button"
-                    className="rounded-md p-2 hover:bg-zinc-100"
-                  >
-                    <Link className="h-4 w-4 text-zinc-500" strokeWidth={2} />
-                  </button>
+                  <Button type="button" variant="ghost">
+                    <Link className="h-4 w-4 text-zinc-500" strokeWidth={2.5} />
+                  </Button>
 
-                  <button
-                    type="button"
-                    className="rounded-md p-2 hover:bg-zinc-100"
-                  >
-                    <List className="h-4 w-4 text-zinc-500" strokeWidth={2} />
-                  </button>
+                  <Button type="button" variant="ghost">
+                    <List className="h-4 w-4 text-zinc-500" strokeWidth={2.5} />
+                  </Button>
 
-                  <button
-                    type="button"
-                    className="rounded-md p-2 hover:bg-zinc-100"
-                  >
+                  <Button type="button" variant="ghost">
                     <ListOrdered
                       className="h-4 w-4 text-zinc-500"
-                      strokeWidth={2}
+                      strokeWidth={2.5}
                     />
-                  </button>
+                  </Button>
                 </div>
               </div>
               <Textarea
-                defaultValue="I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
+                defaultValue="I'm a Product Designer based in Santa Catarina, Brazil. I specialize in UX/UI design, brand strategy and Webflow development."
                 id="bio"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-form gap-3 pt-5">
+          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
             <label
               htmlFor="projects"
               className="text-sm font-medium text-zinc-700"
@@ -220,18 +212,12 @@ export default function Home() {
           </div>
 
           <div className="item flex justify-end gap-2 pt-5">
-            <button
-              type="button"
-              className="rounded-lg border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-700 shadow-sm hover:bg-zinc-50"
-            >
+            <Button variant="outline" type="button">
               Cancel
-            </button>
-            <button
-              type="submit"
-              className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-700"
-            >
+            </Button>
+            <Button variant="primary" type="submit" form="settings">
               Save
-            </button>
+            </Button>
           </div>
         </form>
       </div>
